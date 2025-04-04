@@ -1,31 +1,27 @@
 
 import React, { useState } from 'react';
-import Sidebar from './Sidebar';
 import Header from './Header';
 
 interface LayoutProps {
   children: React.ReactNode;
   showContactButton?: boolean;
+  fullWidth?: boolean;
 }
 
-const Layout = ({ children, showContactButton = true }: LayoutProps) => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
-  
+const Layout = ({ children, showContactButton = true, fullWidth = false }: LayoutProps) => {
   return (
-    <div className="flex h-screen overflow-hidden">
-      <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
+    <div className="flex flex-col min-h-screen bg-[#f9fafb]">
+      <Header showContactButton={showContactButton} />
       
-      <div className="flex-1 flex flex-col overflow-hidden">
-        <Header showContactButton={showContactButton} />
-        
-        <main className="flex-1 overflow-y-auto bg-background p-6">
-          {children}
-        </main>
-      </div>
+      <main className={`flex-1 py-8 ${fullWidth ? 'px-0' : 'px-4 container mx-auto max-w-7xl'}`}>
+        {children}
+      </main>
+      
+      <footer className="bg-white border-t border-gray-100 py-6 text-sm text-center text-gray-500">
+        <div className="container mx-auto">
+          © {new Date().getFullYear()} Your Company. All rights reserved.
+        </div>
+      </footer>
     </div>
   );
 };
