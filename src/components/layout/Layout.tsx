@@ -22,7 +22,7 @@ const Layout = ({ children, showContactButton = true }: LayoutProps) => {
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header showContactButton={showContactButton} />
         
-        <main className="flex-1 overflow-y-auto bg-background">
+        <main className="flex-1 overflow-y-auto bg-background p-6">
           {children}
         </main>
       </div>
